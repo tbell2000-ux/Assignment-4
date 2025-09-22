@@ -14,11 +14,10 @@ Output: False
 
 
 def has_duplicates(product_ids):
-    # Using a set to track seen IDs allows O(1) average time complexity for insertions and lookups.
     seen = set()
     for pid in product_ids:
         if pid in seen:
-            return True  # Duplicate found
+            return True  
         seen.add(pid)
     return False
 
@@ -44,15 +43,10 @@ task_queue.remove_oldest_task() → "Email follow-up"
 
 class TaskQueue:
     def __init__(self):
-        # Using a simple list to store tasks
         self.queue = []
-
     def add_task(self, task):
-        # Add task to the end of the list
         self.queue.append(task)
-
     def remove_oldest_task(self):
-        # Remove task from the front of the list
         if self.queue:
             return self.queue.pop(0)
         return None
@@ -78,15 +72,11 @@ tracker.get_unique_count() → 2
 
 class UniqueTracker:
     def __init__(self):
-        # Using a set to store unique values ensures duplicates are ignored automatically
         self.unique_values = set()
-
     def add(self, value):
-        self.unique_values.add(value)  # O(1) average time complexity
-
+        self.unique_values.add(value)  
     def get_unique_count(self):
-        return len(self.unique_values)  # Returns count of unique items in O(1)
-
+        return len(self.unique_values)  
 # Justification:
 # A set automatically allows constant-time insertion and size retrieval.
 # This makes it efficient to track unique values as a stream with O(1) operations per add and count.
