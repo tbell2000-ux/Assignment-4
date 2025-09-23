@@ -14,12 +14,19 @@ Output: False
 
 
 def has_duplicates(product_ids):
+
     seen = set()
     for pid in product_ids:
         if pid in seen:
-            return True  
+            return True 
         seen.add(pid)
     return False
+
+# Example usage
+print("Problem 1 Examples:")
+print(has_duplicates([10, 20, 30, 20, 40]))  # True (20 repeats)
+print(has_duplicates([1, 2, 3, 4, 5]))       # False (no duplicates)
+print(has_duplicates([]))                    # False (empty list)
 
 # Justification:
 # A set is ideal because it ensures constant-time membership checks. 
@@ -43,17 +50,32 @@ task_queue.remove_oldest_task() → "Email follow-up"
 
 class TaskQueue:
     def __init__(self):
+        # Using a simple list as a queue (FIFO: First In, First Out)
         self.queue = []
+
     def add_task(self, task):
+        # Add task to the end of the queue
         self.queue.append(task)
+
     def remove_oldest_task(self):
+        # Remove task from the front
         if self.queue:
             return self.queue.pop(0)
         return None
 
+# Example usage
+print("\nProblem 2 Examples:")
+task_queue = TaskQueue()
+task_queue.add_task("Email follow-up")
+task_queue.add_task("Code review")
+print(task_queue.remove_oldest_task())  # "Email follow-up"
+print(task_queue.remove_oldest_task())  # "Code review"
+print(task_queue.remove_oldest_task())  # None 
+
+
 # Justification:
 # A list can act as a simple queue: append() adds to the end, pop(0) removes from the front.
-# For small queues this is fine. append() is O(1), pop(0) is O(n), so overall runtime depends on queue size.
+# For small queues, this is fine. append() is O(1), pop(0) is O(n), so overall runtime depends on queue size.
 
 
 
@@ -72,11 +94,25 @@ tracker.get_unique_count() → 2
 
 class UniqueTracker:
     def __init__(self):
+     
         self.unique_values = set()
+
     def add(self, value):
-        self.unique_values.add(value)  
+        self.unique_values.add(value)  # Duplicates automatically ignored
+
     def get_unique_count(self):
-        return len(self.unique_values)  
+        return len(self.unique_values)
+
+# Example usage
+print("\nProblem 3 Examples:")
+tracker = UniqueTracker()
+tracker.add(10)
+tracker.add(20)
+tracker.add(10)  # Duplicate ignored
+print(tracker.get_unique_count())  # 2
+tracker.add(30)
+print(tracker.get_unique_count())  # 3
+ 
 # Justification:
 # A set automatically allows constant-time insertion and size retrieval.
 # This makes it efficient to track unique values as a stream with O(1) operations per add and count.
